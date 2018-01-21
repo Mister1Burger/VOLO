@@ -2,6 +2,7 @@ package com.example.misterburger.volo.ModulesAndController.RealmModule;
 
 import android.content.Context;
 
+import com.example.misterburger.volo.ModulesAndController.GameSetting;
 import com.example.misterburger.volo.Player.Player;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public interface Realm {
     void removePlayer(Context context, String name);
 
     void onDestroy(Context context);
+
+    void removeSetting(Context context);
+
+    void saveSetting(Context context, GameSetting setting);
 }
 

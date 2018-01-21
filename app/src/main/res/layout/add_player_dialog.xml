@@ -3,19 +3,37 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/add_player_ll"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <EditText
         android:hint="@string/players_name"
-        android:textSize="20dp"
         android:id="@+id/add_name_et"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="8"/>
-    <Spinner
-        android:id="@+id/add_gender_spnr"
-        android:layout_width="0dp"
+       />
+    <TextView
+        android:text="@string/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RadioGroup
+        android:id="@+id/gender_rgroup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/male_rbtn"
+            android:text="@string/male"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:id="@+id/female_rbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/female"/>
+    </RadioGroup>
 
-</LinearLayout>
+
+    </LinearLayout>
+

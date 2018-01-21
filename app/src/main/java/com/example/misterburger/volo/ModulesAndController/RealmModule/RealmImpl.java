@@ -3,6 +3,7 @@ package com.example.misterburger.volo.ModulesAndController.RealmModule;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.misterburger.volo.ModulesAndController.GameSetting;
 import com.example.misterburger.volo.Player.Player;
 
 import java.io.File;
@@ -14,6 +15,7 @@ import io.realm.RealmResults;
 import io.realm.exceptions.RealmMigrationNeededException;
 
 public class RealmImpl implements Realm {
+
 
     public RealmImpl() {
     }
@@ -67,7 +69,7 @@ public class RealmImpl implements Realm {
         assert realm != null;
         try {
             realm.beginTransaction();
-            realm.copyToRealmOrUpdate(player);
+            realm.insert(player);
             Log.d( "TAG", String.valueOf(realmFile.length()));
             realm.commitTransaction();
         } catch (NullPointerException ignore) {
@@ -97,6 +99,39 @@ public class RealmImpl implements Realm {
         io.realm.Realm realm = init(context);
         assert realm != null;
         realm.close();
+    }
+
+    @Override
+    public void removeSetting(Context context) {
+        io.realm.Realm realm = init(context);
+        File realmFile = new File(context.getFilesDir(), "reminder.realm");
+        assert realm != null;
+        try {
+            GameSetting setting = realm.where(GameSetting.class)
+                    .findFirst();
+            if(setting!=null) {
+                realm.beginTransaction();
+                setting.deleteFromRealm();
+                realm.commitTransaction();
+            }
+            Log.d( "TAG", String.valueOf(realmFile.length()));
+        } catch (NullPointerException ignore) {
+        }
+    }
+
+    @Override
+    public void saveSetting(Context context, GameSetting setting) {
+
+        io.realm.Realm realm = init(context);
+        File realmFile = new File(context.getFilesDir(), "reminder.realm");
+        assert realm != null;
+        try {
+            realm.beginTransaction();
+            realm.copyToRealmOrUpdate(setting);
+            Log.d( "TAG", String.valueOf(realmFile.length()));
+            realm.commitTransaction();
+        } catch (NullPointerException ignore) {
+        }
     }
 
 

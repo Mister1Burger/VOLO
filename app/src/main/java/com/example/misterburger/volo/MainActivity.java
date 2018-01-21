@@ -7,15 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.misterburger.volo.Fragments.DialogFragment;
 import com.example.misterburger.volo.Fragments.FirstFragment;
 import com.example.misterburger.volo.Fragments.FlagOfFragment;
 import com.example.misterburger.volo.Fragments.NewGameFragment;
+import com.example.misterburger.volo.ModulesAndController.MainActivityController;
+import com.example.misterburger.volo.ModulesAndController.MainActivityControllerImpl;
 // app:srcCompat="@android:drawable/ic_dialog_email" />
 
 public class MainActivity extends AppCompatActivity {
 
     FirstFragment firstFragment;
     NewGameFragment newGameFragment;
+    DialogFragment addPlayerDialog;
+    MainActivityController mainActivityController;
 
 
     @Override
@@ -24,10 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        firstFragment = new FirstFragment();
-        newGameFragment = new NewGameFragment();
+        mainActivityController = new MainActivityControllerImpl();
+        mainActivityController.init();
+        firstFragment = mainActivityController.getFirstFragment();
+        newGameFragment = mainActivityController.getNewGameFragment();
+        addPlayerDialog = mainActivityController.getDialogFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment,new FirstFragment())
+                .replace(R.id.fragment,firstFragment)
                 .commit();
     }
 
@@ -65,13 +73,19 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.fragment, newGameFragment)
                         .commit();
                 break;
+            case ADD_PLAYER_DIALOG:
+                addPlayerDialog.show(getFragmentManager(), "add_dialog");
+
             case GAME_FRAGMENT:
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment, new ClassFragment())
-                        .commit();
-                break;
+//                getFragmentManager().beginTransaction()
+//                    .replace(R.id.fragment, new ClassFragment())
+//                    .commit();
+            break;
 
         }
     }
 
+    public MainActivityController getMainActivityController() {
+        return mainActivityController;
+    }
 }

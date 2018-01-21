@@ -9,7 +9,6 @@ import io.realm.RealmObject;
 public class Player extends RealmObject{
     String name;
     int gender;
-    int number;
 
     public String getName() {
         return name;
@@ -27,11 +26,5 @@ public class Player extends RealmObject{
         this.gender = gender;
     }
 
-    public int getNumber() {
-        return number;
-    }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
 }

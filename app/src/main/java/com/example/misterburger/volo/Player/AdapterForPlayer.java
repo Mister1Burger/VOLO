@@ -17,13 +17,12 @@ public class AdapterForPlayer extends RecyclerView.Adapter<AdapterForPlayer.User
     public static class UserListViewHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
         TextView name_tv;
-        TextView number_tv;
+
 
         UserListViewHolder(View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.player_ll);
             name_tv = itemView.findViewById(R.id.name_tv);
-            number_tv = itemView.findViewById(R.id.number_tv);
         }
     }
 
@@ -46,7 +45,6 @@ public class AdapterForPlayer extends RecyclerView.Adapter<AdapterForPlayer.User
     @Override
     public void onBindViewHolder(UserListViewHolder holder,final int position) {
      holder.name_tv.setText(getPlayers().get(position).getName());
-     holder.number_tv.setText(getPlayers().get(position).getNumber());
      holder.linearLayout.setOnClickListener(view -> listener.getPlayerFromListener(getPlayers().get(position)));
     }
 

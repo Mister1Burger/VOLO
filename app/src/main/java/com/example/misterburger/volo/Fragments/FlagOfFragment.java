@@ -7,7 +7,8 @@ package com.example.misterburger.volo.Fragments;
 public enum FlagOfFragment {
     FIRST_FRAGMENT,
     GAME_FRAGMENT,
-    NEW_GAME_FRAGMENT;
+    NEW_GAME_FRAGMENT,
+    ADD_PLAYER_DIALOG;
 
 
 }
